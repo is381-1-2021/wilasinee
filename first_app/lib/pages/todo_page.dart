@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:first_app/controllers/todo_controller.dart';
 import 'package:first_app/models/todo_model.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Todo {
   final int userId;
   final int id;
@@ -28,6 +30,13 @@ class AllTodos {
   ) {
     var x = json.map((record) => Todo.fromJson(record)).toList();
 
+    return AllTodos(x);
+  }
+
+  factory AllTodos.fromSnapshot(QuerySnapshot snapShot) {
+    var x = snapShot.docs.map((record) {
+      return Todo.fromJson(record.data() as Map<String, dynamic>);
+    }).toList();
     return AllTodos(x);
   }
 }
