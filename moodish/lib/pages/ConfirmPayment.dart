@@ -103,7 +103,9 @@ class _FormConfirmState extends State<FormConfirm> {
                 };
                 FirebaseFirestore.instance
                     .collection("moodish_order")
-                    .add(data);
+                    .add(data)
+                    .then((value) => print("New Order Added"))
+                    .catchError((error) => print("Failed to add order!!"));
 
                 //  context.read<PaymentModel>().name = itemName;
                 //  context.read<PaymentModel>().orderref = _orderref;

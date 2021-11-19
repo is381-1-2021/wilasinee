@@ -1,7 +1,11 @@
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:midterm_app/controllers/note_controller.dart';
 import 'package:midterm_app/models/Note.dart';
+import 'package:midterm_app/models/NotesOperation.dart';
 import 'package:midterm_app/services/services.dart';
+import 'package:provider/provider.dart';
 
 class AllQuote extends StatefulWidget {
   @override
@@ -47,8 +51,7 @@ class _AllQuoteState extends State<AllQuote> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      '${notes[index].date.toString().substring(0, notes[index].date.toString().lastIndexOf(':'))}',
+                  Text('${notes[index].date.toString().substring(0, notes[index].date.toString().lastIndexOf(':'))}',
                       style: TextStyle(color: Colors.white)),
                   Center(
                     child: Padding(

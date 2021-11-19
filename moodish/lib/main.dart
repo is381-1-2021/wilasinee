@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:midterm_app/controllers/product_controller.dart';
 import 'package:midterm_app/pages/TaskOverview.dart';
+import 'package:midterm_app/pages/mood_calendar2.dart';
 import 'package:provider/provider.dart';
 
 import 'controllers/note_controller.dart';
@@ -76,10 +77,11 @@ class MyApp extends StatelessWidget {
         '/5': (context) => ProductCatalog(),
         '/6': (context) => MakeOrder(),
         '/7': (context) => DailyMood(),
-        '/8': (context) => MonthlyMood(),
+        '/8': (context) => AllMood(),
         '/9': (context) => AddQuote(),
         '/10': (context) => AllQuote(),
         '/11': (context) => ShowListProduct(),
+        '/12': (context) => TaskEdit(),
       },
     );
   }

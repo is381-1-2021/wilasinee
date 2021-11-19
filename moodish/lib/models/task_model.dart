@@ -17,6 +17,14 @@ class TodoModel extends ChangeNotifier {
         title: 'Read final exam \n One night miracle.',
         description: "My third todo"),
   ];
+  String? _duedate;
+
+  get date => this._duedate;
+
+  set date(value) {
+    this._duedate = value;
+    notifyListeners();
+  }
 
   UnmodifiableListView<Todo> get todos => UnmodifiableListView(_todos);
 

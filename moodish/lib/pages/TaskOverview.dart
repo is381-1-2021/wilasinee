@@ -74,14 +74,64 @@ class _AllTaskState extends State<AllTask> {
   Widget get body => isLoading
       ? CircularProgressIndicator()
       : ListView.builder(
+          padding: const EdgeInsets.all(10.0),
           itemCount: tasks.isEmpty ? 1 : tasks.length,
           itemBuilder: (ctx, index) {
             if (tasks.isEmpty) {
               return Text('Tap button to fetch tasks');
             }
-            return ListTile(
-              title: Text(tasks[index].headline),
-              subtitle: Text(tasks[index].detail),
+            return Padding(
+              //title: Text(tasks[index].headline),
+              //subtitle: Text(tasks[index].detail),
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  padding: EdgeInsets.all(2.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFD376),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  //height: 150,
+                  child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.assignment_outlined, size: 30,),
+                          alignment: Alignment.centerLeft,
+                          onPressed: (){},
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                          'DUEDATE : ${tasks[index].duedate.toString().substring(0, tasks[index].duedate.toString().lastIndexOf(' '))}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 13,
+                          ),
+                        ),
+                            Text(
+                          '${tasks[index].headline}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 18,
+                            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1
+              ..color = Colors.lightBlue[700]!,
+                          ),
+                        ),
+                        Text(
+                          '${tasks[index].detail}',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 13,
+                          ),
+                        ),
+                          ],
+                        ),
+                      ]
+                    ),
+                  ),
             );
           },
         );
@@ -97,7 +147,7 @@ class _AllTaskState extends State<AllTask> {
           ),
         ),
         appBar: AppBar(
-          title: Text('All your tasks'),
+          title: Text('To do list'),
           actions: [
             IconButton(
               icon: Icon(Icons.add),
@@ -107,6 +157,11 @@ class _AllTaskState extends State<AllTask> {
             ),
           ],
         ),
-        body: Center(child: body));
+        body: Align(
+          alignment: Alignment.centerLeft,
+          child: body
+          ),
+        );
   }
 }
+
