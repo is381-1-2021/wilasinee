@@ -10,8 +10,6 @@ import 'ProductDetail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductCatalog extends StatelessWidget {
-  //final ProductController controller3;
-  //ProductCatalog({required this.controller3});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,88 +19,86 @@ class ProductCatalog extends StatelessWidget {
       body: Container(
         color: Colors.white12,
         child: Column(
-          children: <Widget>[
-            Image.network(
-              'https://firebasestorage.googleapis.com/v0/b/is381-2021-moodish.appspot.com/o/store%20banner%2Fstore%20banner.png?alt=media&token=8348f664-8dcf-4762-98f9-723ddf0bcbb9',
-              fit: BoxFit.cover,
-              height: 300.0,
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton.icon(
-              icon: Icon(Icons.storefront),
-              onPressed: () async {
-                Navigator.pushNamed(context, '/11');
-              },
-              label: Text(
-                'View All Product',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
+            children: <Widget>[
+              Image.network('https://firebasestorage.googleapis.com/v0/b/is381-2021-moodish.appspot.com/o/store%20banner%2Fstore%20banner.png?alt=media&token=8348f664-8dcf-4762-98f9-723ddf0bcbb9',
+                    fit: BoxFit.cover,
+                    height: 300.0,
+              ),   
+              SizedBox(height: 20.0),
+              ElevatedButton.icon(
+                  icon: Icon(Icons.storefront),
+                  onPressed: () async {
+                    Navigator.pushNamed(context, '/11');
+                  },
+                  label: Text(
+                    'View All Product',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF8B82D0),
+                    fixedSize: Size(260, 80),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
                 ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF8B82D0),
-                fixedSize: Size(260, 80),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+                SizedBox(height: 20.0),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.shopping_cart_outlined),
+                  onPressed: () async {
+                    Navigator.pushNamed(context, '/6');
+                  },
+                  label: Text(
+                    'Make Order',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF8B82D0),
+                    fixedSize: Size(260, 80),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton.icon(
-              icon: Icon(Icons.shopping_cart_outlined),
-              onPressed: () async {
-                Navigator.pushNamed(context, '/6');
-              },
-              label: Text(
-                'Make Order',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
+                SizedBox(height: 20.0),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.history),
+                  onPressed: () async {
+                    Navigator.pushNamed(context, '/12');
+                  },
+                  label: Text(
+                    'Order History',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF8B82D0),
+                    fixedSize: Size(260, 80),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
                 ),
+                SizedBox(height: 20.0,),
+                Image.network('https://firebasestorage.googleapis.com/v0/b/is381-2021-moodish.appspot.com/o/store%20banner%2Fstore%20banner%20buttom.png?alt=media&token=debe38eb-77a3-4b91-af88-07626c5c14e9',
+                    fit: BoxFit.cover,
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF8B82D0),
-                fixedSize: Size(260, 80),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton.icon(
-              icon: Icon(Icons.history),
-              onPressed: () {},
-              label: Text(
-                'Order History',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF8B82D0),
-                fixedSize: Size(260, 80),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Image.network(
-              'https://firebasestorage.googleapis.com/v0/b/is381-2021-moodish.appspot.com/o/store%20banner%2Fstore%20banner%20buttom.png?alt=media&token=debe38eb-77a3-4b91-af88-07626c5c14e9',
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
+            ],
+          ),
       ),
-    );
+      );
   }
 }
 
-class ShowListProduct extends StatefulWidget {
+class ShowListProduct extends StatefulWidget{
   @override
   _ShowListProductState createState() => _ShowListProductState();
 }
@@ -129,192 +125,193 @@ class _ShowListProductState extends State<ShowListProduct> {
   }
 
   Widget get body => isLoading
-      ? CircularProgressIndicator()
-      : ListView.builder(
-          itemCount: products.isEmpty ? 1 : products.length,
-          itemBuilder: (ctx, index) {
-            if (products.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
+          ? CircularProgressIndicator()
+          : ListView.builder(
+            itemCount: products.isEmpty ? 1 : products.length,
+            itemBuilder: (ctx, index) {
+              if (products.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
                   'Refresh to view products',
                   style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 20,
                   ),
-                ),
-              );
-            }
-            Size size = MediaQuery.of(context).size;
-            return GestureDetector(
-              onTap: () => showModalBottomSheet(
-                //product detail
-                //backgroundColor: Colors.transparent,
-                isScrollControlled: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(20.0),
+                  ),
+                );
+              }
+              Size size = MediaQuery.of(context).size;
+              return GestureDetector(
+                onTap: () => showModalBottomSheet( //product detail
+		                //backgroundColor: Colors.transparent,
+		                isScrollControlled: true,
+		                shape: RoundedRectangleBorder(
+		                	borderRadius: BorderRadius.vertical(
+		                		top: Radius.circular(20.0),
+		                	),
+		                ),
+                        context: context, 
+                        builder: (context) => Container(
+                          	color: Color(0xFF8B82D0).withOpacity(0.4),
+                          	padding: EdgeInsets.all(16.0),
+                          	child: Column(
+                          	mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('${products[index].title}'.toUpperCase(),
+                                  style: TextStyle(
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                   ),
+                                ),
+                                SizedBox(height: 5.0),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    '${products[index].subtitle}'.toUpperCase(),
+                                    style: TextStyle(
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.bold,
+                                     ),
+                                  ),
+                                ),
+                                SizedBox(height: 5.0),
+                                Image.network(
+                                  products[index].imgpath,
+                                  fit: BoxFit.contain,
+                                ),
+                                SizedBox(height:20.0),
+                                Container(
+                                  height: 50.0,
+                                  width: 100.0,
+                                  color: Color(products[index].color),
+                                  child: Center(
+                                    child: Text(
+                                      '\฿${products[index].price}',
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 30.0),
+                                  child: Text(
+                                    '${products[index].detail}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20.0),
+                              ],
+                            )
+                          ),
+                        ),
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20.0,
+                    vertical: 10.0,
+                  ),
+                  height: 160.0,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: <Widget>[
+                      //background product card
+                      Container(
+                        height: 136.0,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22.0),
+                            color: Color(products[index].color),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(22.0),
+                          ),
+                        ),
+                      ),
+                      //product image
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          width: 200.0,
+                          height: 160.0,
+                          child: Image.network(products[index].imgpath,
+                          fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      //product title&price
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 136.0,
+                          width: size.width - 200.0,
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  '${products[index].title} \n ${products[index].subtitle}',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.0,
+                                  vertical: 5.0,
+                                ),
+                                decoration: BoxDecoration(color: Color(products[index].color)),
+                                child: Text(
+                                  '\฿${products[index].price}',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                context: context,
-                builder: (context) => Container(
-                    color: Color(0xFF8B82D0).withOpacity(0.4),
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          '${products[index].title}'.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 5.0),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: Text(
-                            '${products[index].subtitle}'.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 5.0),
-                        Image.network(
-                          products[index].imgpath,
-                          fit: BoxFit.contain,
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          height: 50.0,
-                          width: 100.0,
-                          color: Color(products[index].color),
-                          child: Center(
-                            child: Text(
-                              '\฿${products[index].price}',
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 30.0),
-                          child: Text(
-                            '${products[index].detail}',
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20.0),
-                      ],
-                    )),
-              ),
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 10.0,
-                ),
-                height: 160.0,
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: <Widget>[
-                    //background product card
-                    Container(
-                      height: 136.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22.0),
-                        color: Color(products[index].color),
-                      ),
-                      child: Container(
-                        margin: EdgeInsets.only(right: 10.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(22.0),
-                        ),
-                      ),
-                    ),
-                    //product image
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        width: 200.0,
-                        height: 160.0,
-                        child: Image.network(
-                          products[index].imgpath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    //product title&price
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      child: SizedBox(
-                        height: 136.0,
-                        width: size.width - 200.0,
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Text(
-                                '${products[index].title} \n ${products[index].subtitle}',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20.0,
-                                vertical: 5.0,
-                              ),
-                              decoration: BoxDecoration(
-                                  color: Color(products[index].color)),
-                              child: Text(
-                                '\฿${products[index].price}',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
+              );
+            },
+          );
 
   //UI ของมิดเทอม
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFCECAE8),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _getProducts,
-          child: Icon(
-            Icons.search,
-            size: 30,
-          ),
+      backgroundColor: Color(0xFFCECAE8),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _getProducts,
+        child: Icon(
+          Icons.search,
+          size: 30,
         ),
-        appBar: AppBar(
-          title: Text('Moodish Product'),
-        ),
-        body: Center(child: body));
+      ),
+      appBar: AppBar(
+        title: Text('Moodish Product'),
+      ),
+      body: Center(child: body)
+    );
   }
+
 }
 
 class Body extends StatelessWidget {

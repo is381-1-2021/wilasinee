@@ -23,15 +23,19 @@ class AllNotes {
 
   factory AllNotes.fromJson(
     List<dynamic> json,
-  ) {
+  ){
     var x = json.map((record) => Note.fromJson(record)).toList();
-
+  
     return AllNotes(x);
   }
 
-  factory AllNotes.fromSnapshot(QuerySnapshot snapshot) {
+  factory AllNotes.fromSnapshot(
+    QuerySnapshot snapshot
+  ) {
     var x = snapshot.docs.map((record) {
-      return Note.fromJson(record.data() as Map<String, dynamic>);
+      return Note.fromJson(
+        record.data() as Map<String, dynamic>
+      );
     }).toList();
 
     return AllNotes(x);

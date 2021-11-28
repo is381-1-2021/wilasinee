@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:midterm_app/controllers/product_controller.dart';
+import 'package:midterm_app/pages/Account.dart';
+import 'package:midterm_app/pages/OrderList.dart';
+import 'package:midterm_app/pages/Register.dart';
 import 'package:midterm_app/pages/TaskOverview.dart';
-import 'package:midterm_app/pages/mood_calendar2.dart';
 import 'package:provider/provider.dart';
 
 import 'controllers/note_controller.dart';
@@ -20,25 +22,19 @@ import 'pages/TaskEdit.dart';
 import 'pages/daily_mood.dart';
 import 'pages/home.dart';
 import 'pages/monthly_mood.dart';
+import 'pages/mood_calendar.dart';
 import 'services/services.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => MoodModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => FormModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => NotesOperation(),
+           create: (context) => FormModel(),
         ),
       ],
       child: MyApp(),
@@ -48,14 +44,16 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         print('User is currently signed out!');
+        context.read<FormModel>().isLogin = false;
       } else {
         print('User is signed in!');
+        context.read<FormModel>().isLogin = true;
       }
     });
     return MaterialApp(
@@ -69,19 +67,22 @@ class MyApp extends StatelessWidget {
         ),
       ),
       initialRoute: '/2',
-      routes: <String, WidgetBuilder>{
+      routes: <String, WidgetBuilder> {
         '/1': (context) => LogIn(),
         '/2': (context) => Home(),
         '/3': (context) => AllTask(),
-        '/4': (context) => TodoEntryScreen(),
+        '/4': (context) => TodoEntryScreen(), 
         '/5': (context) => ProductCatalog(),
         '/6': (context) => MakeOrder(),
         '/7': (context) => DailyMood(),
         '/8': (context) => AllMood(),
         '/9': (context) => AddQuote(),
         '/10': (context) => AllQuote(),
-        '/11': (context) => ShowListProduct(),
-        '/12': (context) => TaskEdit(),
+        '/11' : (context) => ShowListProduct(),
+        '/12' : (context) => OrderList(),
+        '/13' : (context) => TaskEdit(),
+        '/14' : (context) => RegisterScreen(),
+        '/15' : (context) => Account(),
       },
     );
   }

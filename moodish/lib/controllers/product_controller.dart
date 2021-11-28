@@ -19,4 +19,4 @@ class ProductController {
 
     return products;
   }
-}
+} 

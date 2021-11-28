@@ -4,8 +4,9 @@ class Task {
   final String detail;
   final DateTime duedate;
   final String headline;
+  bool completed;
 
-  Task(this.detail, this.duedate, this.headline);
+  Task(this.detail, this.duedate, this.headline,this.completed);
 
   factory Task.fromJson(
     Map<String, dynamic> json,
@@ -14,6 +15,7 @@ class Task {
       json['detail'] as String,
       (json['duedate'] as Timestamp).toDate(),
       json['headline'] as String,
+      json['completed'] as bool,
     );
   }
 }
@@ -31,9 +33,13 @@ class AllTasks {
     return AllTasks(x);
   }
 
-  factory AllTasks.fromSnapshot(QuerySnapshot snapshot) {
+  factory AllTasks.fromSnapshot(
+    QuerySnapshot snapshot
+  ) {
     var x = snapshot.docs.map((record) {
-      return Task.fromJson(record.data() as Map<String, dynamic>);
+      return Task.fromJson(
+        record.data() as Map<String, dynamic>
+      );
     }).toList();
 
     return AllTasks(x);

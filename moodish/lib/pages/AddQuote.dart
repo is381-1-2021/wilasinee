@@ -37,7 +37,7 @@ class AddQuote extends StatelessWidget {
                   ),
                   validator: (quoteText) {
                     if (quoteText == null || quoteText.isEmpty) {
-                      return 'Please enter your quote';
+                    return 'Please enter your quote';
                     }
                   },
                 ),
@@ -47,13 +47,11 @@ class AddQuote extends StatelessWidget {
                   primary: Color(0xFF5F478C),
                 ),
                 onPressed: () {
-                  Map<String, dynamic> data = {
-                    "quoteText": quoteText.text,
-                    "date": DateTime.now()
-                  };
-                  FirebaseFirestore.instance
-                      .collection("moodish_quotes")
-                      .add(data);
+                Map <String, dynamic> data = {"quoteText":quoteText.text,"date":DateTime.now()}; 
+                FirebaseFirestore.instance.collection("moodish_quotes")
+                .add(data)
+                .then((value) => print("New Quote Added"))
+                .catchError((error) => print("Failed to add quote!!"));
                   Navigator.pop(context);
                 },
                 child: Text('Add Quote'),

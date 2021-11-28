@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:midterm_app/models/Note.dart';
 import 'package:midterm_app/services/services.dart';
 
+
+
 class NoteController {
   final Services services;
   List<Note> notes = List.empty();
@@ -19,4 +21,4 @@ class NoteController {
 
     return notes;
   }
-}
+} 

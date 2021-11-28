@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:midterm_app/models/Note.dart';
 
@@ -9,11 +10,11 @@ class NotesOperation extends ChangeNotifier {
   }
 
   NotesOperation() {
-    addNewNote('5 nov 2021', 'ไม่จำเป็นต้องแข่งขัน เพราะเรานั้นไม่ใช่ไก่');
+    addNewNote('ไม่จำเป็นต้องแข่งขัน เพราะเรานั้นไม่ใช่ไก่');
   }
 
-  void addNewNote(String quote, String date) {
-    Note note = Note(DateTime.now(), quote);
+  void addNewNote(String quote) {
+    Note note = Note(DateTime.now(),quote);
     _notes.add(note);
     notifyListeners();
   }
