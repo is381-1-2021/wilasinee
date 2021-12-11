@@ -1,4 +1,6 @@
+import 'package:final_app/models/history_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,6 +17,9 @@ class _HomeState extends State<Home> {
   double num2 = 0.0;
 
   String operand = '';
+
+  String savenum = '0';
+  String shownum = '';
 
   buttonPressed(String buttonText) {
     if (buttonText == 'CLEAR') {
@@ -43,16 +48,60 @@ class _HomeState extends State<Home> {
 
       if (operand == '+') {
         _output = (num1 + num2).toString();
+        shownum = num1.toString() +
+            ' ' +
+            '+' +
+            ' ' +
+            num2.toString() +
+            ' ' +
+            '=' +
+            ' ' +
+            _output;
+        Provider.of<HistoryModel>(context, listen: false)
+            .addNewHistory(shownum);
       }
 
       if (operand == '-') {
         _output = (num1 - num2).toString();
+        shownum = num1.toString() +
+            ' ' +
+            '-' +
+            ' ' +
+            num2.toString() +
+            ' ' +
+            '=' +
+            ' ' +
+            _output;
+        Provider.of<HistoryModel>(context, listen: false)
+            .addNewHistory(shownum);
       }
       if (operand == 'x') {
         _output = (num1 * num2).toString();
+        shownum = num1.toString() +
+            ' ' +
+            'x' +
+            ' ' +
+            num2.toString() +
+            ' ' +
+            '=' +
+            ' ' +
+            _output;
+        Provider.of<HistoryModel>(context, listen: false)
+            .addNewHistory(shownum);
       }
       if (operand == '/') {
         _output = (num1 / num2).toString();
+        shownum = num1.toString() +
+            ' ' +
+            '/' +
+            ' ' +
+            num2.toString() +
+            ' ' +
+            '=' +
+            ' ' +
+            _output;
+        Provider.of<HistoryModel>(context, listen: false)
+            .addNewHistory(shownum);
       }
 
       num1 = 0.0;
@@ -78,6 +127,7 @@ class _HomeState extends State<Home> {
           style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
         ),
         onPressed: () {
+          //buttonPressedSave(buttonText);
           buttonPressed(buttonText);
         },
         color: Colors.blueGrey,
@@ -91,6 +141,19 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Calculator"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.history),
+            tooltip: 'History',
+            onPressed: () {
+              Navigator.pushNamed(context, '/2');
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.info), //ใส่ไว้เพราะโดนบังง
+            onPressed: () {},
+          ),
+        ],
       ),
       body: Container(
           child: Column(

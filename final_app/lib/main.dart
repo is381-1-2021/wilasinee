@@ -1,9 +1,14 @@
+import 'package:final_app/models/history_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'pages/history.dart';
 import 'pages/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => HistoryModel(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
