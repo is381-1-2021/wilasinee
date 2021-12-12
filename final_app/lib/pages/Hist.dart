@@ -46,7 +46,6 @@ class _HistoryState extends State<History> {
                   'Tab button to fetch history',
                 )),
               );
-
               //Consumer<MemOperation>(
               //  builder: (context, MemOperation data, child) {
               //    return ListView.builder(
@@ -105,7 +104,6 @@ class _HistoryState extends State<History> {
         ],
       ),
       body: Align(alignment: Alignment.centerLeft, child: body),
-
       //    Consumer<MemOperation>(
       //        builder: (context, MemOperation data, child) {
       //  return ListView.builder(
