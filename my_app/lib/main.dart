@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/models/NotesOperation.dart';
-import 'package:my_app/pages/blank_page.dart';
-import 'package:my_app/pages/AddQuote.dart';
-import 'package:my_app/pages/AllQuote.dart';
+
+import 'package:my_app/pages/Cal.dart';
+import 'package:my_app/pages/Hist.dart';
 import 'package:provider/provider.dart';
+
+import 'models/MemOperation.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (context) => NotesOperation(),
+    create: (context) => MemOperation(),
     child: MyApp(),
   ));
 }
@@ -18,14 +19,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: Color(0xFF8B82D0),
-          accentColor: Color(0xFF5F478C),
+          primaryColor: Colors.blueGrey,
         ),
-        initialRoute: '/0',
+        initialRoute: '/1',
         routes: <String, WidgetBuilder>{
-          '/10': (context) => AllQuote(),
-          '/9': (context) => AddQuote(),
-          '/0': (context) => BlankPage()
+          '/1': (context) => Cal(),
+          '/2': (context) => History(),
         });
   }
 }

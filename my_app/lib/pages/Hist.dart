@@ -1,6 +1,7 @@
-import 'package:final_app/models/Note.dart';
-import 'package:final_app/models/history_model.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/models/Mem.dart';
+import 'package:my_app/models/MemOperation.dart';
+
 import 'package:provider/provider.dart';
 
 class History extends StatelessWidget {
@@ -8,8 +9,8 @@ class History extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("History")),
-      body: Consumer<HistoryModel>(
-        builder: (context, HistoryModel data, child) {
+      body: Consumer<MemOperation>(
+        builder: (context, MemOperation data, child) {
           return ListView.builder(
             itemCount: data.getHistory.length,
             itemBuilder: (context, index) {
@@ -23,7 +24,7 @@ class History extends StatelessWidget {
 }
 
 class HistoryList extends StatelessWidget {
-  final Note history;
+  final Mem history;
   HistoryList(this.history);
 
   @override

@@ -1,13 +1,14 @@
-import 'package:final_app/models/history_model.dart';
 import 'package:flutter/material.dart';
+
+import 'package:my_app/models/MemOperation.dart';
 import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
+class Cal extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _CalState createState() => _CalState();
 }
 
-class _HomeState extends State<Home> {
+class _CalState extends State<Cal> {
   String output = '0';
 
   String _output = '0';
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> {
             '=' +
             ' ' +
             _output;
-        Provider.of<HistoryModel>(context, listen: false)
+        Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
       }
 
@@ -72,7 +73,7 @@ class _HomeState extends State<Home> {
             '=' +
             ' ' +
             _output;
-        Provider.of<HistoryModel>(context, listen: false)
+        Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
       }
       if (operand == 'x') {
@@ -86,7 +87,7 @@ class _HomeState extends State<Home> {
             '=' +
             ' ' +
             _output;
-        Provider.of<HistoryModel>(context, listen: false)
+        Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
       }
       if (operand == '/') {
@@ -100,7 +101,7 @@ class _HomeState extends State<Home> {
             '=' +
             ' ' +
             _output;
-        Provider.of<HistoryModel>(context, listen: false)
+        Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
       }
 
@@ -140,7 +141,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculator"),
+        title: Text('Calculator'),
         actions: [
           IconButton(
             icon: Icon(Icons.history),
