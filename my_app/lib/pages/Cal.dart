@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:my_app/models/MemOperation.dart';
@@ -60,6 +61,14 @@ class _CalState extends State<Cal> {
             _output;
         Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
+        Map<String, dynamic> data = {"printnum": shownum};
+        FirebaseFirestore.instance
+            .collection("liew_final")
+            .add(data)
+            .then((value) => print("History Updated"))
+            .catchError((error) =>
+                print("Failed to update history!!")); //add to firestore
+
       }
 
       if (operand == '-') {
@@ -75,6 +84,13 @@ class _CalState extends State<Cal> {
             _output;
         Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
+        Map<String, dynamic> data = {"printnum": shownum};
+        FirebaseFirestore.instance
+            .collection("liew_final")
+            .add(data)
+            .then((value) => print("History Updated"))
+            .catchError((error) =>
+                print("Failed to update history!!")); //add to firestore
       }
       if (operand == 'x') {
         _output = (num1 * num2).toString();
@@ -89,6 +105,13 @@ class _CalState extends State<Cal> {
             _output;
         Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
+        Map<String, dynamic> data = {"printnum": shownum};
+        FirebaseFirestore.instance
+            .collection("liew_final")
+            .add(data)
+            .then((value) => print("History Updated"))
+            .catchError((error) =>
+                print("Failed to update history!!")); //add to firestore
       }
       if (operand == '/') {
         _output = (num1 / num2).toString();
@@ -103,6 +126,13 @@ class _CalState extends State<Cal> {
             _output;
         Provider.of<MemOperation>(context, listen: false)
             .addNewHistory(shownum);
+        Map<String, dynamic> data = {"printnum": shownum};
+        FirebaseFirestore.instance
+            .collection("liew_final")
+            .add(data)
+            .then((value) => print("History Updated"))
+            .catchError((error) =>
+                print("Failed to update history!!")); //add to firestore
       }
 
       num1 = 0.0;
