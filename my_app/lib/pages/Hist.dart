@@ -33,33 +33,53 @@ class _HistoryState extends State<History> {
     setState(() => memfireb = newMem);
   }
 
+  ///////
+
+  //////
+
   Widget get body => isLoading
       ? CircularProgressIndicator()
       : ListView.builder(
           itemCount: memfireb.isEmpty ? 1 : memfireb.length,
           itemBuilder: (ctx, index) {
             if (memfireb.isEmpty) {
-              return Text('Tap button to fetch history');
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                    child: Text(
+                  'Tab button to fetch history',
+                )),
+              );
+
+              //Consumer<MemOperation>(
+              //  builder: (context, MemOperation data, child) {
+              //    return ListView.builder(
+              //        itemCount: data.getHistory.length,
+              //        itemBuilder: (context, index) {
+              //          return HistoryList(data.getHistory[index]);
+              //        });
+              //  },
+              //);
             }
             return Container(
-              margin: EdgeInsets.all(15),
-              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.all(8),
+              padding: EdgeInsets.all(8),
               height: 90,
               decoration: BoxDecoration(
-                  color: Color(0xFFFFC392),
-                  borderRadius: BorderRadius.circular(15)),
+                  color: Colors.blueGrey[70],
+                  borderRadius: BorderRadius.circular(7)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        memfireb[index].printnum, //5555555555
+                        memfireb[index].printnum, //!!!!
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 22,
                             fontWeight: FontWeight.w400,
-                            color: Color(0xFF5F478C)),
+                            color: Colors.black),
                       ),
                     ),
                   ),
@@ -69,7 +89,7 @@ class _HistoryState extends State<History> {
                 ],
               ),
             );
-          },
+          }, //ปีกใหญ่
         );
   @override
   Widget build(BuildContext context) {
@@ -79,20 +99,25 @@ class _HistoryState extends State<History> {
         actions: [
           IconButton(
             icon: Icon(Icons.refresh),
-            onPressed: _getMem, //5555555555
+            tooltip: 'Fetch History',
+            onPressed: _getMem, //!!!!
+          ),
+          IconButton(
+            icon: Icon(Icons.info), //ใส่ไว้เพราะโดนบังง
+            onPressed: () {},
           ),
         ],
       ),
-      body: Consumer<MemOperation>(
-        builder: (context, MemOperation data, child) {
-          return ListView.builder(
-            itemCount: data.getHistory.length,
-            itemBuilder: (context, index) {
-              return HistoryList(data.getHistory[index]);
-            },
-          );
-        },
-      ),
+      body: Align(alignment: Alignment.centerLeft, child: body),
+
+      //    Consumer<MemOperation>(
+      //        builder: (context, MemOperation data, child) {
+      //  return ListView.builder(
+      //      itemCount: data.getHistory.length,
+      //      itemBuilder: (context, index) {
+      //        return HistoryList(data.getHistory[index]);
+      //      });
+      //})
     );
   }
 }
@@ -107,6 +132,8 @@ class HistoryList extends StatelessWidget {
       margin: EdgeInsets.all(8),
       padding: EdgeInsets.all(8),
       height: 90,
+      decoration: BoxDecoration(
+          color: Colors.blueGrey[0], borderRadius: BorderRadius.circular(7)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -7,8 +7,8 @@ class MemOperation extends ChangeNotifier {
     return _history;
   }
 
-  HistoryOperation() {
-    addNewHistory('There is no history yet');
+  MemOperation() {
+    addNewHistory('Here is the History');
   }
 
   void addNewHistory(String shownum) {
