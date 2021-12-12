@@ -33,10 +33,6 @@ class _HistoryState extends State<History> {
     setState(() => memfireb = newMem);
   }
 
-  ///////
-
-  //////
-
   Widget get body => isLoading
       ? CircularProgressIndicator()
       : ListView.builder(
@@ -89,7 +85,7 @@ class _HistoryState extends State<History> {
                 ],
               ),
             );
-          }, //ปีกใหญ่
+          },
         );
   @override
   Widget build(BuildContext context) {

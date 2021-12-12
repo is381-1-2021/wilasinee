@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501086667627",
+    "project_id": "is381-2021-moodish",
+    "storage_bucket": "is381-2021-moodish.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501086667627:android:0e3a2246b441540313c22e",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501086667627-a1jksb2dlbln9026pmmqf214o48mc89l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW6nVplT3k_z744EihQb_zIqdw7EcmyNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501086667627-a1jksb2dlbln9026pmmqf214o48mc89l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
